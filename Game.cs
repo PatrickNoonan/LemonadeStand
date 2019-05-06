@@ -61,8 +61,10 @@ namespace LemonadeStand
             //determine how many individual customers visited
             CurrentDay.TodaysVisits();
             //determine how many customers made a purchase
-            CurrentDay.TodaysPurchases
+            CurrentDay.GlassesPurchased();
+            PlayerOne.CurrentMoney += CurrentDay.TodaysPurchases;
             //determine how much money that brought in
+
             //determine how much of your inventory that used up
             //display your current money and inventory
             //start new day
