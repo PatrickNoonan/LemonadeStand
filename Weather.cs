@@ -9,21 +9,23 @@ namespace LemonadeStand
     class Weather
     {
         //has a 
-        public bool IsCloudy;
-        public bool IsRaining;
-        public bool IsSunny;
-        public bool IsCold;
+        public List<string> WeatherOptions;        
+        public string WeatherChoice;
+        public Random RNG;
 
         //contructor
         public Weather()
         {
-
+            RNG = new Random();
+            WeatherOptions = new List<string> { "Sunny", "Rainy", "Cloudy", "Cold" };
         }
 
         //does this
-        public void DetermineWeather()
+        public string DetermineWeather()
         {
-            //based on RNG return a weather condition
+            int index = RNG.Next(WeatherOptions.Count);
+            WeatherChoice = WeatherOptions[index];
+            return WeatherChoice;
         }
     }
 }

@@ -17,13 +17,9 @@ namespace LemonadeStand
         public Player()
         {
             PlayerOneInventory = new Inventory();
-            
-
         }
 
         //does this
-        
-
         public string DecideWhatToBuy()
         {
             Console.WriteLine("Would you like to go to the store and buy something?");
@@ -48,7 +44,7 @@ namespace LemonadeStand
             PlayerOneInventory.Sugar += SugarAndCost[0];
             PlayerOneInventory.CurrentMoney -= SugarAndCost[1];
 
-            List<double> CupsAndCost = TheStore.BuyCups();
+            List<double> CupsAndCost = TheStore.BuyGlasses();
             PlayerOneInventory.Cups += CupsAndCost[0];
             PlayerOneInventory.CurrentMoney -= CupsAndCost[1];
 
@@ -58,9 +54,16 @@ namespace LemonadeStand
         }
         public void MakeYourRecipe()
         {
+            Console.WriteLine("What would you like your lemonade recipe to be?");
+            SetYourPricing();
 
         }
         public void SetYourPricing()
+        {
+            Console.WriteLine("How much will this recipe cost per glass?");
+        }
+
+        public void OpenStandForSales()
         {
 
         }

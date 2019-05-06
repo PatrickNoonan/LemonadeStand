@@ -19,8 +19,6 @@ namespace LemonadeStand
         public double Cups;
         public double Sugar;
         
-
-
         //contructor
         public Inventory()
         {
