@@ -9,20 +9,60 @@ namespace LemonadeStand
     class Store
     {
         //has a 
-        public double LemonPrice;
+        public double LemonsPrice;
         public double SugarPrice;
-        public double CupPrice;
+        public double GlassPrice;
         public double IcePrice;
-
+        public double LemonsToSell;
+        public double SugarToSell;
+        public double GlassesToSell;
+        public double IceToSell;
+        public double HowMany;
+        public double PriceOfSale;
+        public List<double> ProductAndPrice;
+            
         //contructor
         public Store()
         {
-            LemonPrice = .5;
-            SugarPrice = .5;
-            CupPrice = .25;
-            IcePrice = 1.00;
+            LemonsPrice = .25;
+            SugarPrice = .25;
+            GlassPrice = .25;
+            IcePrice = .25;
         }
 
         //does this
+       
+        public List<double> BuyLemons()
+        {
+            Console.WriteLine("How many lemons would you like to buy?");
+            HowMany = double.Parse(Console.ReadLine());
+            PriceOfSale = HowMany * LemonsPrice;
+            ProductAndPrice = new List<double> { HowMany, PriceOfSale};
+            return ProductAndPrice;
+        }
+        
+        public List<double> BuySugar()
+        {
+            Console.WriteLine("How much sugar would you like to buy?");
+            HowMany = double.Parse(Console.ReadLine());
+            ProductAndPrice = new List<double> { HowMany, PriceOfSale };
+            return ProductAndPrice;
+        }
+
+        public List<double> BuyGlasses()
+        {
+            Console.WriteLine("How many Glasss would you like to buy?");
+            HowMany = double.Parse(Console.ReadLine());
+            ProductAndPrice = new List<double> { HowMany, PriceOfSale };
+            return ProductAndPrice;
+        }
+
+        public List<double> BuyIce()
+        {
+            Console.WriteLine("How much ice would you like to buy?");
+            HowMany = double.Parse(Console.ReadLine());
+            ProductAndPrice = new List<double> { HowMany, PriceOfSale };
+            return ProductAndPrice;
+        }
     }
 }

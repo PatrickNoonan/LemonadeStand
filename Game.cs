@@ -12,6 +12,7 @@ namespace LemonadeStand
         public Player PlayerOne;
         public Store Walmart;
         public UserInterface UI;
+        public string GoShopping;
 
         //contructor
         public Game()
@@ -24,7 +25,18 @@ namespace LemonadeStand
         //does this
         public void RunGame()
         {
-            DisplayInstructions();
+            UI.DisplayInstructions();
+            PlayerOne.PlayerOneInventory.DisplayInventory();
+            GoShopping = PlayerOne.DecideWhatToBuy();
+            if (GoShopping == "yes")
+            {
+                PlayerOne.GoToTheStore(Walmart);
+            }
+            PlayerOne.MakeYourRecipe();
+            PlayerOne.SetYourPricing();
         }
+
+
+
     }
 }

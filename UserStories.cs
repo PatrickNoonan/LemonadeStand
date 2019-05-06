@@ -40,5 +40,6 @@ namespace LemonadeStand
         Day
         User
         Interface
-    }*/
+        */
+    }
     }

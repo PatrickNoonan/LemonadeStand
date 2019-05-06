@@ -21,7 +21,7 @@ namespace LemonadeStand
         }
 
         //does this
-        public bool DetermineWeather()
+        public void DetermineWeather()
         {
             //based on RNG return a weather condition
         }
