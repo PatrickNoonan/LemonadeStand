@@ -9,6 +9,10 @@ namespace LemonadeStand
     class Weather
     {
         //has a 
+        public bool IsCloudy;
+        public bool IsRaining;
+        public bool IsSunny;
+        public bool IsCold;
 
         //contructor
         public Weather()
@@ -17,5 +21,9 @@ namespace LemonadeStand
         }
 
         //does this
+        public bool DetermineWeather()
+        {
+            //based on RNG return a weather condition
+        }
     }
 }

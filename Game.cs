@@ -9,18 +9,22 @@ namespace LemonadeStand
     class Game
     {
         //has a 
-        Player PlayerOne = new Player();
+        public Player PlayerOne;
+        public Store Walmart;
+        public UserInterface UI;
 
         //contructor
         public Game()
         {
-
+            PlayerOne = new Player();
+            Walmart = new Store();
+            UI = new UserInterface();
         }
 
         //does this
         public void RunGame()
         {
-
+            DisplayInstructions();
         }
     }
 }

@@ -13,11 +13,15 @@ namespace LemonadeStand
         public double CurrentMoney;
         public double ProfitForDay;
         public double AccumulatedProfit;
+        public double Lemon;
+        public double Ice;
+        public double Cups;
+        public double Sugar;
 
         //contructor
         public Player()
         {
-
+            
         }
 
         //does this

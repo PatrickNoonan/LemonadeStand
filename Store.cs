@@ -17,7 +17,10 @@ namespace LemonadeStand
         //contructor
         public Store()
         {
-
+            LemonPrice = .5;
+            SugarPrice = .5;
+            CupPrice = .25;
+            IcePrice = 1.00;
         }
 
         //does this

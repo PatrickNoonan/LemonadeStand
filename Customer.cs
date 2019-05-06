@@ -9,6 +9,7 @@ namespace LemonadeStand
     class Customer
     {
         //has a 
+        public double ChanceToBuy;
 
         //contructor
         public Customer()
@@ -17,5 +18,9 @@ namespace LemonadeStand
         }
 
         //does this
+        public void DetermineChanceToBuy()
+        {
+            // ChanceToBuy = RNG baased on weather
+        }
     }
 }
