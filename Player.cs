@@ -74,5 +74,17 @@ namespace LemonadeStand
             Console.ReadLine();
         }
 
+        public void RecountInventory(Recipe recipe, double purchases)
+        {
+            PlayerOneInventory.GrossTotalToday = (purchases * recipe.PricePerGlass);
+            PlayerOneInventory.ProfitForDay = (PlayerOneInventory.GrossTotalToday - recipe.CalculateProductionCost(purchases));
+            PlayerOneInventory.CurrentMoney += (PlayerOneInventory.ProfitForDay);
+
+            PlayerOneInventory.Lemons -= (purchases * recipe.LemonsPerGlass);
+            PlayerOneInventory.Ice -= (purchases * recipe.IcePerGlass);
+            PlayerOneInventory.Sugar -= (purchases * recipe.SugarPerGlass);
+            PlayerOneInventory.Cups -= (purchases * recipe.Cups);
+        }
+
     }
 }

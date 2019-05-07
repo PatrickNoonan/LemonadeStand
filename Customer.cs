@@ -28,42 +28,49 @@ namespace LemonadeStand
             RainyPercent = 20;
         }
 
-        //does thisChanceToBuy;
+        //does thisChanceToBuy;        
 
-        public bool WillPurchase(string CurrentWeather)
-        {            
-            switch (CurrentWeather)
+        public bool WillPurchase(string CurrentWeather, bool HasStock)
+        {
+            if (HasStock == false)
             {
-                case "Sunny":
-                    if (CurrentCustomerChanceToBuy <= SunnyPercent)
-                    {
-                        return true;
-                    }
-                    break;
-                case "Cloudy":
-                    if (CurrentCustomerChanceToBuy <= CloudyPercent)
-                    {
-                        return true;
-                    }
-                    break;
-                case "Cold":
-                    if (CurrentCustomerChanceToBuy <= ColdPercent)
-                    {
-                        return true;
-                    }
-                    break;
-                case "Rainy":
-                    if (CurrentCustomerChanceToBuy <= RainyPercent)
-                    {
-                        return true;
-                    }
-                    break;
-                default:
-                    {
-                        throw new Exception("I don't expect this to ever show.");
-                    }
+                return false;
             }
-            return false;
+            else
+            {
+                switch (CurrentWeather)
+                {
+                    case "Sunny":
+                        if (CurrentCustomerChanceToBuy <= SunnyPercent)
+                        {
+                            return true;
+                        }
+                        break;
+                    case "Cloudy":
+                        if (CurrentCustomerChanceToBuy <= CloudyPercent)
+                        {
+                            return true;
+                        }
+                        break;
+                    case "Cold":
+                        if (CurrentCustomerChanceToBuy <= ColdPercent)
+                        {
+                            return true;
+                        }
+                        break;
+                    case "Rainy":
+                        if (CurrentCustomerChanceToBuy <= RainyPercent)
+                        {
+                            return true;
+                        }
+                        break;
+                    default:
+                        {
+                            throw new Exception("I don't expect this to ever show.");
+                        }
+                }
+                return false;
+            }
         }        
     }
 }

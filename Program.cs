@@ -12,7 +12,6 @@ namespace LemonadeStand
         {
             Game MainGame = new Game();
             MainGame.DisplayInstructionsUI();
-
         }
     }
 }

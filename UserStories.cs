@@ -9,8 +9,9 @@ namespace LemonadeStand
     class UserStories
     {/*
         As a developer, if I don’t know what Lemonade Stand game is, I will play the game online for a bit to get familiar with the gameplay.
-        (5 points): As a developer, I want to make good, consistent commits.(25 points): As a player, I want the basic Lemonade Stand gameplay to be present.
-        (10 points): As a player, I want a weather system that includes a forecast and actual weather, so that I can get a 
+        ---(5 points): As a developer, I want to make good, consistent commits.
+        ---(25 points): As a player, I want the basic Lemonade Stand gameplay to be present.
+        ---(10 points): As a player, I want a weather system that includes a forecast and actual weather, so that I can get a 
         predicted forecast for a day or week and then what the actual weather is on the given day.
         (10 points): As a player, the price of product as well as weather/temperature should affect demand, so that if the price is too high, 
         sales will decrease, or if the price is too low, sales will increase, etc. 

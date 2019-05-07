@@ -11,7 +11,7 @@ namespace LemonadeStand
         //has a 
         public Weather TodaysWeather;
         public Random RNG;
-        public Recipe TodaysRecipe = new Recipe();
+        public Recipe TodaysRecipe;
         public List<Customer> CustomerList;
         public string WeatherType;
         public int TodaysVisits;
@@ -23,6 +23,7 @@ namespace LemonadeStand
             TodaysWeather = new Weather();
             RNG = new Random();
             CustomerList = new List<Customer> { };
+            TodaysRecipe = new Recipe();
         }
 
         //does this
@@ -50,14 +51,15 @@ namespace LemonadeStand
 
             Console.WriteLine("The amount of visitors today was " + TodaysVisits);
         }
-        public void GlassesPurchased()
+        public void GlassesPurchased(Player player, int DemandValue)
         {
             foreach (Customer customer in CustomerList)
             {
-                customer.CurrentCustomerChanceToBuy = RNG.Next(150);
-                if (customer.WillPurchase(WeatherType) == true)
+                customer.CurrentCustomerChanceToBuy = RNG.Next(DemandValue);
+                if (customer.WillPurchase(WeatherType, player.PlayerOneInventory.MakeSureEverythingStocked()) == true)
                 {
                     TodaysPurchases++;
+                    player.RecountInventory(TodaysRecipe, TodaysPurchases);
                 }
             }
             Console.WriteLine("The amount of purchases today was " + TodaysPurchases);
