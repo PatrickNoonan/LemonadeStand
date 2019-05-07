@@ -1,0 +1,6 @@
+In Customer class
+-Open/closed principle
+Turned member variables in this class into private variables, to prevent modification, but there could still be more variables added allowing for extension.
+
+-Single responsibility principle.  
+I made 1 member method originally that I was able to break apart into 2 seperate methods, I split them up to handle different responsibilies individually.

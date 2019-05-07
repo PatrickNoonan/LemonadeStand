@@ -29,6 +29,7 @@ namespace LemonadeStand
         }
 
         //does this
+        //-Single responsibility principle.  These 2 member methods were originally 1, but I split them up to handle responsibilies individually.
         public bool CheckStock(string TodaysWeather, bool HasStock)
         {
             if (HasStock == false)
