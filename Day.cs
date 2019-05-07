@@ -13,26 +13,19 @@ namespace LemonadeStand
         public Random RNG;
         public Recipe TodaysRecipe = new Recipe();
         public List<Customer> CustomerList;
-        public string DayOfWeek;
-        public string WeatherType;        
+        public string WeatherType;
         public int TodaysVisits;
         public int TodaysPurchases;
 
         //contructor
         public Day()
         {
-            WeatherType = "Sunny";
             TodaysWeather = new Weather();
             RNG = new Random();
             CustomerList = new List<Customer> { };
         }
 
         //does this
-        public void UpdateDay()
-        {
-            Console.WriteLine("Today is " + DayOfWeek);
-        }
-
         public void UpdateWeather()
         {
             WeatherType = TodaysWeather.DetermineWeather();
@@ -54,14 +47,15 @@ namespace LemonadeStand
             {
                 CustomerList.Add(new Customer());
             }
-            
+
             Console.WriteLine("The amount of visitors today was " + TodaysVisits);
         }
         public void GlassesPurchased()
         {
-            foreach ( Customer customer in CustomerList)
+            foreach (Customer customer in CustomerList)
             {
-                if ( customer.WillPurchase(WeatherType) == true)
+                customer.CurrentCustomerChanceToBuy = RNG.Next(150);
+                if (customer.WillPurchase(WeatherType) == true)
                 {
                     TodaysPurchases++;
                 }

@@ -26,14 +26,12 @@ namespace LemonadeStand
             CloudyPercent = 60;
             ColdPercent = 40;
             RainyPercent = 20;
-            CurrentCustomerChanceToBuy = RNG.Next(100);
-
         }
 
         //does thisChanceToBuy;
 
         public bool WillPurchase(string CurrentWeather)
-        {
+        {            
             switch (CurrentWeather)
             {
                 case "Sunny":
@@ -65,7 +63,7 @@ namespace LemonadeStand
                         throw new Exception("I don't expect this to ever show.");
                     }
             }
-            return true;
+            return false;
         }        
     }
 }

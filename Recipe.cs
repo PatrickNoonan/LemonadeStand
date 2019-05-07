@@ -23,8 +23,7 @@ namespace LemonadeStand
             SugarPerGlass = 4;
             IcePerGlass = 4;
             Cups = 1;
-            PricePerGlass = 1;
-            
+            PricePerGlass = 1;           
         }
 
         public double CalculateProductionCost(double Purchases)

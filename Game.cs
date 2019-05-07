@@ -54,6 +54,7 @@ namespace LemonadeStand
         {           
             BeginNewDay();
             PlayerOne.PlayerOneInventory.DisplayInventory();
+            CurrentDay.UpdateWeather();
             CurrentDay.CheckWeather();
             PlayerOne.MakeYourRecipe(CurrentDay);
             GoShopping = PlayerOne.DecideWhatToBuy();
@@ -65,6 +66,7 @@ namespace LemonadeStand
             CurrentDay.DetermineVisits();
             CurrentDay.CustomerVisits();            
             CurrentDay.GlassesPurchased();
+            //PlayerOne.PlayerOneInventory.MakeSureEverythingStocked()
             RecountInventory();
             PlayerOne.PlayerOneInventory.DisplayInventory();
             Console.ReadLine();
