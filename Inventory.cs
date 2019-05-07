@@ -11,25 +11,27 @@ namespace LemonadeStand
         //has a 
         public double StartingMoney;
         public double CurrentMoney;
+        public double GrossTotalToday;
         public double MoneySpent;
         public double ProfitForDay;
-        public double AccumulatedProfit;
         public double Lemons;
         public double Ice;
         public double Cups;
         public double Sugar;
+        public List<double> InventoryList;
         
         //contructor
         public Inventory()
         {
-            StartingMoney = 20;
-            CurrentMoney = 20;
+            StartingMoney = 100;
+            CurrentMoney = 100;
             ProfitForDay = 0;
-            AccumulatedProfit = 0;
-            Lemons = 20;
-            Ice = 20;
+            MoneySpent = 0;
+            Lemons = 0;
+            Ice = 0;
             Sugar = 0;
             Cups = 0;
+            
         }
 
         //does this
@@ -37,13 +39,26 @@ namespace LemonadeStand
         {
             Console.WriteLine("Your current Inventory consists of");
             Console.WriteLine("Current Money: " + CurrentMoney);
-            Console.WriteLine("Profit for tpday: " + ProfitForDay);
-            Console.WriteLine("Profit accumulated this week: " + AccumulatedProfit);
+            Console.WriteLine("Profit for today: " + ProfitForDay);
+            Console.WriteLine("The total money you've spent today: " + MoneySpent);
             Console.WriteLine("Lemons in stock: " + Lemons);
             Console.WriteLine("Ice in stock: " + Ice);
             Console.WriteLine("Cups in stock: " + Cups);
             Console.WriteLine("Sugar in stock: " + Sugar);
             Console.ReadLine();
+        }
+
+        public bool MakeSureEverythingStocked()
+        {
+            InventoryList = new List<double> { Lemons, Ice, Cups, Sugar };
+            foreach ( double inventory in InventoryList)
+            {
+                if ( inventory <= 0)
+                {
+                    return false;
+                } 
+            }
+            return true;
         }
     }
 }

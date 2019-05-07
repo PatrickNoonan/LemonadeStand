@@ -13,10 +13,6 @@ namespace LemonadeStand
         public double SugarPrice;
         public double GlassPrice;
         public double IcePrice;
-        public double LemonsToSell;
-        public double SugarToSell;
-        public double GlassesToSell;
-        public double IceToSell;
         public double HowMany;
         public double PriceOfSale;
         public List<double> ProductAndPrice;
@@ -25,9 +21,9 @@ namespace LemonadeStand
         public Store()
         {
             LemonsPrice = .25;
-            SugarPrice = .25;
-            GlassPrice = .25;
+            SugarPrice = .25;            
             IcePrice = .25;
+            GlassPrice = .25;
         }
 
         //does this

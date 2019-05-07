@@ -11,9 +11,10 @@ namespace LemonadeStand
         //has a 
         public Weather TodaysWeather;
         public Random RNG;
-        public string DayOfWeek;
-        public string WeatherType;
         public Recipe TodaysRecipe = new Recipe();
+        public List<Customer> CustomerList;
+        public string DayOfWeek;
+        public string WeatherType;        
         public int TodaysVisits;
         public int TodaysPurchases;
 
@@ -23,6 +24,7 @@ namespace LemonadeStand
             WeatherType = "Sunny";
             TodaysWeather = new Weather();
             RNG = new Random();
+            CustomerList = new List<Customer> { };
         }
 
         //does this
@@ -41,13 +43,30 @@ namespace LemonadeStand
             Console.WriteLine("It is a " + WeatherType + " day today.");
         }
 
+        public void DetermineVisits()
+        {
+            TodaysVisits = RNG.Next(50, 100);
+        }
+
         public void CustomerVisits()
         {
-            TodaysVisits = RNG.Next(100);
+            for (int i = 0; i < TodaysVisits; i++)
+            {
+                CustomerList.Add(new Customer());
+            }
+            
+            Console.WriteLine("The amount of visitors today was " + TodaysVisits);
         }
         public void GlassesPurchased()
         {
-            TodaysPurchases = RNG.Next(TodaysVisits);
+            foreach ( Customer customer in CustomerList)
+            {
+                if ( customer.WillPurchase(WeatherType) == true)
+                {
+                    TodaysPurchases++;
+                }
+            }
+            Console.WriteLine("The amount of purchases today was " + TodaysPurchases);
         }
     }
 }

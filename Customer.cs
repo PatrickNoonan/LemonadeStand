@@ -9,50 +9,63 @@ namespace LemonadeStand
     class Customer
     {
         //has a 
-        public double ChanceToBuy;
+        public Random RNG;
         public double SunnyPercent;
         public double RainyPercent;
         public double CloudyPercent;
         public double ColdPercent;
+        public double CurrentCustomerChanceToBuy;
         public List<string> WeatherOptions;
-        public Random RNG;
-
-
 
         //contructor
         public Customer()
         {
+            RNG = new Random();
             WeatherOptions = new List<string> { "Sunny", "Cloudy", "Cold", "Rainy" };
             SunnyPercent = 80;
             CloudyPercent = 60;
             ColdPercent = 40;
             RainyPercent = 20;
+            CurrentCustomerChanceToBuy = RNG.Next(100);
 
         }
 
-        //does this
-        public void DetermineChanceToBuy()
-        {
-            int index = RNG.Next(WeatherOptions.Count);
-            ChanceToBuy = WeatherOptions[index];
-            return ChanceToBuy;
-        }
+        //does thisChanceToBuy;
 
-        public bool WillBuyOrNot()
+        public bool WillPurchase(string CurrentWeather)
         {
-            switch (index)
+            switch (CurrentWeather)
             {
-                case SunnyPercent:
-                        if (index <= 80)
+                case "Sunny":
+                    if (CurrentCustomerChanceToBuy <= SunnyPercent)
                     {
                         return true;
                     }
-                    
+                    break;
+                case "Cloudy":
+                    if (CurrentCustomerChanceToBuy <= CloudyPercent)
+                    {
+                        return true;
+                    }
+                    break;
+                case "Cold":
+                    if (CurrentCustomerChanceToBuy <= ColdPercent)
+                    {
+                        return true;
+                    }
+                    break;
+                case "Rainy":
+                    if (CurrentCustomerChanceToBuy <= RainyPercent)
+                    {
+                        return true;
+                    }
+                    break;
+                default:
+                    {
+                        throw new Exception("I don't expect this to ever show.");
+                    }
             }
-
-
-
-
-        }
+            return true;
+        }        
     }
 }

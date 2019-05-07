@@ -52,19 +52,26 @@ namespace LemonadeStand
             List<double> IceAndCost = TheStore.BuyIce();
             PlayerOneInventory.Ice += IceAndCost[0];
             PlayerOneInventory.CurrentMoney -= IceAndCost[1];
+
+            PlayerOneInventory.MoneySpent = (LemonsAndCost[1] + SugarAndCost[1] + CupsAndCost[1] + IceAndCost[1]);
         }
         public void MakeYourRecipe(Day Today)
         {
             Console.WriteLine("What would you like your lemonade recipe to be?");
-            Today.TodaysRecipe.LemonsPerGlass = 4;
-            Today.TodaysRecipe.SugarPerGlass = 4;
-            Today.TodaysRecipe.IcePerGlass = 4;
-            Today.TodaysRecipe.PricePerGlass = 1.00;         
+            Console.WriteLine("Lemons per glass?");
+            Today.TodaysRecipe.LemonsPerGlass = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cups of sugar per glass?");
+            Today.TodaysRecipe.SugarPerGlass = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cubes of ice per glass?");
+            Today.TodaysRecipe.IcePerGlass = int.Parse(Console.ReadLine());
+            Console.WriteLine("How expensive will this recipe be to the customer per glass?");
+            Today.TodaysRecipe.PricePerGlass = int.Parse(Console.ReadLine());
         }
 
         public void OpenStandForSales()
         {
             Console.WriteLine("The stand is now open.");
+            Console.ReadLine();
         }
 
     }
