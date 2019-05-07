@@ -12,7 +12,6 @@ namespace LemonadeStand
         public Player PlayerOne;
         public Store Walmart;
         public UserInterface UI;
-        public Customer newCustomer;
         public List<Day> Days;
         public Day Monday;
         public Day Tuesday;
@@ -54,7 +53,8 @@ namespace LemonadeStand
         public void RunGame()
         {           
             BeginNewDay();
-            PlayerOne.PlayerOneInventory.DisplayInventory();
+            PlayerOne.PlayerOneInventory.ResetDailyValues();
+            PlayerOne.PlayerOneInventory.DisplayInventory();            
             CurrentDay.TodaysWeather.DetermineForecast();
             CurrentDay.UpdateWeather();
             CurrentDay.CheckWeather();
@@ -68,11 +68,17 @@ namespace LemonadeStand
             CurrentDay.DetermineVisits();
             CurrentDay.CustomerVisits();
             DemandValue = CurrentDay.TodaysRecipe.PriceBasedDemand();
-            CurrentDay.GlassesPurchased(PlayerOne, DemandValue);         
+            CurrentDay.GlassesPurchased(PlayerOne, DemandValue);
             PlayerOne.PlayerOneInventory.DisplayInventory();
             Console.ReadLine();
-            RunGame();
-
+            if (DayCounter < 7)
+            {
+                RunGame();
+            } else
+            {
+                Console.WriteLine("Week has ended.");
+                Console.ReadLine();
+            }
         }
 
         public void BeginNewDay()

@@ -21,7 +21,7 @@ namespace LemonadeStand
         public Store()
         {
             LemonsPrice = .25;
-            SugarPrice = .25;            
+            SugarPrice = .25;
             IcePrice = .25;
             GlassPrice = .25;
         }
@@ -41,14 +41,16 @@ namespace LemonadeStand
         {
             Console.WriteLine("How much sugar would you like to buy?");
             HowMany = double.Parse(Console.ReadLine());
+            PriceOfSale = HowMany * SugarPrice;
             ProductAndPrice = new List<double> { HowMany, PriceOfSale };
             return ProductAndPrice;
         }
 
         public List<double> BuyGlasses()
         {
-            Console.WriteLine("How many Glasss would you like to buy?");
+            Console.WriteLine("How many Glasses would you like to buy?");
             HowMany = double.Parse(Console.ReadLine());
+            PriceOfSale = HowMany * GlassPrice;
             ProductAndPrice = new List<double> { HowMany, PriceOfSale };
             return ProductAndPrice;
         }
@@ -57,6 +59,7 @@ namespace LemonadeStand
         {
             Console.WriteLine("How much ice would you like to buy?");
             HowMany = double.Parse(Console.ReadLine());
+            PriceOfSale = HowMany * IcePrice;
             ProductAndPrice = new List<double> { HowMany, PriceOfSale };
             return ProductAndPrice;
         }

@@ -14,18 +14,18 @@ namespace LemonadeStand
         public double IcePerGlass;
         public double Cups;        
         public double ProductionCostPer;
-        public int CustomerChanceOfBuyingFree;
+        public int CustomerChanceOfBuying;
         public int PricePerGlass;
 
         //constructor
         public Recipe()
         {
             LemonsPerGlass = 4;
-            SugarPerGlass = 4;
+            SugarPerGlass = 1;
             IcePerGlass = 4;
             Cups = 1;
             PricePerGlass = 1;
-            CustomerChanceOfBuyingFree = 100;
+            CustomerChanceOfBuying = 100;
         }
 
         public double CalculateProductionCost(double Purchases)
@@ -36,8 +36,8 @@ namespace LemonadeStand
 
         public int PriceBasedDemand()
         {
-            int ChanceFallOff = PricePerGlass * 5;
-            return CustomerChanceOfBuyingFree - ChanceFallOff;
+            int DecreaseChance = PricePerGlass * 2;
+            return CustomerChanceOfBuying + DecreaseChance;
         }
 
         //does this

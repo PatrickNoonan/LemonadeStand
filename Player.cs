@@ -10,7 +10,6 @@ namespace LemonadeStand
     {
         //has a 
         public Inventory PlayerOneInventory;
-        public string WhatToBuy;
 
 
 
@@ -36,24 +35,25 @@ namespace LemonadeStand
         public void GoToTheStore(Store TheStore)
         {
             Console.WriteLine("Welcome to Walmart!");
-
             List<double> LemonsAndCost = TheStore.BuyLemons();
             PlayerOneInventory.Lemons += LemonsAndCost[0];
             PlayerOneInventory.CurrentMoney -= LemonsAndCost[1];
+            PlayerOneInventory.MoneySpent += LemonsAndCost[1];
 
-            List<double> SugarAndCost = TheStore.BuySugar();
+           List<double> SugarAndCost = TheStore.BuySugar();
             PlayerOneInventory.Sugar += SugarAndCost[0];
             PlayerOneInventory.CurrentMoney -= SugarAndCost[1];
+            PlayerOneInventory.MoneySpent += SugarAndCost[1];
 
-            List<double> CupsAndCost = TheStore.BuyGlasses();
+           List<double> CupsAndCost = TheStore.BuyGlasses();
             PlayerOneInventory.Cups += CupsAndCost[0];
             PlayerOneInventory.CurrentMoney -= CupsAndCost[1];
+            PlayerOneInventory.MoneySpent += CupsAndCost[1];
 
-            List<double> IceAndCost = TheStore.BuyIce();
+           List<double> IceAndCost = TheStore.BuyIce();
             PlayerOneInventory.Ice += IceAndCost[0];
             PlayerOneInventory.CurrentMoney -= IceAndCost[1];
-
-            PlayerOneInventory.MoneySpent = (LemonsAndCost[1] + SugarAndCost[1] + CupsAndCost[1] + IceAndCost[1]);
+            PlayerOneInventory.MoneySpent += IceAndCost[1];
         }
         public void MakeYourRecipe(Day Today)
         {
@@ -74,16 +74,19 @@ namespace LemonadeStand
             Console.ReadLine();
         }
 
-        public void RecountInventory(Recipe recipe, double purchases)
+        public void RecountInventory(Recipe recipe)
+        {
+            PlayerOneInventory.Lemons -= recipe.LemonsPerGlass;
+            PlayerOneInventory.Ice -= recipe.IcePerGlass;
+            PlayerOneInventory.Sugar -= recipe.SugarPerGlass;
+            PlayerOneInventory.Cups -= recipe.Cups;
+        }
+
+        public void RecountMoney(Recipe recipe, double purchases)
         {
             PlayerOneInventory.GrossTotalToday = (purchases * recipe.PricePerGlass);
-            PlayerOneInventory.ProfitForDay = (PlayerOneInventory.GrossTotalToday - recipe.CalculateProductionCost(purchases));
-            PlayerOneInventory.CurrentMoney += (PlayerOneInventory.ProfitForDay);
-
-            PlayerOneInventory.Lemons -= (purchases * recipe.LemonsPerGlass);
-            PlayerOneInventory.Ice -= (purchases * recipe.IcePerGlass);
-            PlayerOneInventory.Sugar -= (purchases * recipe.SugarPerGlass);
-            PlayerOneInventory.Cups -= (purchases * recipe.Cups);
+            PlayerOneInventory.ProfitForDay = (PlayerOneInventory.GrossTotalToday - PlayerOneInventory.MoneySpent);
+            PlayerOneInventory.CurrentMoney += (PlayerOneInventory.GrossTotalToday);
         }
 
     }

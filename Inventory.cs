@@ -23,10 +23,9 @@ namespace LemonadeStand
         //contructor
         public Inventory()
         {
-            StartingMoney = 100;
-            CurrentMoney = 100;
+            StartingMoney = 200;
+            CurrentMoney = 200;
             ProfitForDay = 0;
-            MoneySpent = 0;
             Lemons = 0;
             Ice = 0;
             Sugar = 0;
@@ -39,13 +38,20 @@ namespace LemonadeStand
         {
             Console.WriteLine("Your current Inventory consists of");
             Console.WriteLine("Current Money: " + CurrentMoney);
-            Console.WriteLine("Profit for today: " + ProfitForDay);
-            Console.WriteLine("The total money you've spent today: " + MoneySpent);
+            Console.WriteLine("Money spent today: " + MoneySpent);
+            Console.WriteLine("Money from sales: " + GrossTotalToday);
+            Console.WriteLine("Profit for today: " + ProfitForDay);            
             Console.WriteLine("Lemons in stock: " + Lemons);
             Console.WriteLine("Ice in stock: " + Ice);
             Console.WriteLine("Cups in stock: " + Cups);
             Console.WriteLine("Sugar in stock: " + Sugar);
-            Console.ReadLine();
+            Console.ReadLine();            
+    }
+        public void ResetDailyValues()
+        {
+            ProfitForDay = 0;
+            MoneySpent = 0;
+            GrossTotalToday = 0;
         }
 
         public bool MakeSureEverythingStocked()

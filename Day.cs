@@ -39,7 +39,7 @@ namespace LemonadeStand
 
         public void DetermineVisits()
         {
-            TodaysVisits = RNG.Next(50, 100);
+            TodaysVisits = RNG.Next(150, 200);
         }
 
         public void CustomerVisits()
@@ -53,16 +53,19 @@ namespace LemonadeStand
         }
         public void GlassesPurchased(Player player, int DemandValue)
         {
+            TodaysPurchases = 0;
             foreach (Customer customer in CustomerList)
             {
-                customer.CurrentCustomerChanceToBuy = RNG.Next(DemandValue);
-                if (customer.WillPurchase(WeatherType, player.PlayerOneInventory.MakeSureEverythingStocked()) == true)
+                int DemandNum = RNG.Next(DemandValue);
+                customer.CurrentCustomerChanceToBuy = DemandNum;
+                if ( customer.CheckStock(WeatherType, player.PlayerOneInventory.MakeSureEverythingStocked()) == true)
                 {
                     TodaysPurchases++;
-                    player.RecountInventory(TodaysRecipe, TodaysPurchases);
+                    player.RecountInventory(TodaysRecipe);
                 }
             }
             Console.WriteLine("The amount of purchases today was " + TodaysPurchases);
+            player.RecountMoney(TodaysRecipe, TodaysPurchases);
         }
     }
 }
