@@ -9,8 +9,9 @@ namespace LemonadeStand
     class Player
     {
         //has a 
-        public Inventory PlayerOneInventory;        
+        public Inventory PlayerOneInventory;
         public string WhatToBuy;
+
 
 
         //contructor
@@ -52,20 +53,18 @@ namespace LemonadeStand
             PlayerOneInventory.Ice += IceAndCost[0];
             PlayerOneInventory.CurrentMoney -= IceAndCost[1];
         }
-        public void MakeYourRecipe()
+        public void MakeYourRecipe(Day Today)
         {
             Console.WriteLine("What would you like your lemonade recipe to be?");
-            SetYourPricing();
-
-        }
-        public void SetYourPricing()
-        {
-            Console.WriteLine("How much will this recipe cost per glass?");
+            Today.TodaysRecipe.LemonsPerGlass = 4;
+            Today.TodaysRecipe.SugarPerGlass = 4;
+            Today.TodaysRecipe.IcePerGlass = 4;
+            Today.TodaysRecipe.PricePerGlass = 1.00;         
         }
 
         public void OpenStandForSales()
         {
-
+            Console.WriteLine("The stand is now open.");
         }
 
     }

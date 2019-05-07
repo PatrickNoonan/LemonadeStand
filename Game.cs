@@ -45,9 +45,13 @@ namespace LemonadeStand
         }
 
         //does this
-        public void RunGame()
+        public void DisplayInstructionsUI()
         {
             UI.DisplayInstructions();
+            RunGame();
+        }
+        public void RunGame()
+        {            
             BeginNewDay();
             PlayerOne.PlayerOneInventory.DisplayInventory();
             GoShopping = PlayerOne.DecideWhatToBuy();
@@ -55,18 +59,18 @@ namespace LemonadeStand
             {
                 PlayerOne.GoToTheStore(Walmart);
             }
-            PlayerOne.MakeYourRecipe();
-            PlayerOne.SetYourPricing();
+            PlayerOne.MakeYourRecipe(CurrentDay);
             PlayerOne.OpenStandForSales();
             //determine how many individual customers visited
-            CurrentDay.TodaysVisits();
+            CurrentDay.CustomerVisits();
             //determine how many customers made a purchase
-            CurrentDay.GlassesPurchased();
-            PlayerOne.CurrentMoney += CurrentDay.TodaysPurchases;
+            CurrentDay.GlassesPurchased();//
             //determine how much money that brought in
-
-            //determine how much of your inventory that used up
+            //determine how much inventory that used up
+            RecountInventory();
+            
             //display your current money and inventory
+            PlayerOne.PlayerOneInventory.DisplayInventory();
             //start new day
 
         }
@@ -76,9 +80,14 @@ namespace LemonadeStand
             DayCounter++;
         }
 
-        public void CustomerPurchase()
+        public void RecountInventory()
         {
+            PlayerOne.PlayerOneInventory.CurrentMoney += (CurrentDay.TodaysPurchases * CurrentDay.TodaysRecipe.PricePerGlass);
 
+            PlayerOne.PlayerOneInventory.Lemons -= (CurrentDay.TodaysPurchases * CurrentDay.TodaysRecipe.LemonsPerGlass);
+            PlayerOne.PlayerOneInventory.Ice -= (CurrentDay.TodaysPurchases * CurrentDay.TodaysRecipe.IcePerGlass);
+            PlayerOne.PlayerOneInventory.Sugar -= (CurrentDay.TodaysPurchases * CurrentDay.TodaysRecipe.SugarPerGlass);
         }
+
     }
 }

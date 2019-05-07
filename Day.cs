@@ -13,8 +13,9 @@ namespace LemonadeStand
         public Random RNG;
         public string DayOfWeek;
         public string WeatherType;
-        public double TodaysVisits;
-        public double TodaysPurchases;
+        public Recipe TodaysRecipe = new Recipe();
+        public int TodaysVisits;
+        public int TodaysPurchases;
 
         //contructor
         public Day()
@@ -42,11 +43,11 @@ namespace LemonadeStand
 
         public void CustomerVisits()
         {
-            TodaysVisits = RNG.Next(50);
+            TodaysVisits = RNG.Next(100);
         }
         public void GlassesPurchased()
         {
-            TodaysPurchases = RNG.Next(50);
+            TodaysPurchases = RNG.Next(TodaysVisits);
         }
     }
 }
