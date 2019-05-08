@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class UserInterface
+    static class UserInterface
     {
         //has a 
 
         //contructor
-        public UserInterface()
-        {
+        //public UserInterface()
+        //{
 
-        }
+        //}
 
         //does this
-        public void DisplayInstructions()
+        public static void DisplayInstructions()
         {
             Console.WriteLine("Welcome to the lemonade stand");
             Console.WriteLine("You have 7 days to make as much money as possible");

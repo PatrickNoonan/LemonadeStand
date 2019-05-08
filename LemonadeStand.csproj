@@ -45,6 +45,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Human.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="UserInterface.cs" />
     <Compile Include="UserStories.cs" />
     <Compile Include="Weather.cs" />
+    <Compile Include="WeatherAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

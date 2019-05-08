@@ -13,7 +13,6 @@ namespace LemonadeStand
         public Random RNG;
         public Recipe TodaysRecipe;
         public List<Customer> CustomerList;
-        public string WeatherType;
         public int TodaysVisits;
         public int TodaysPurchases;
 
@@ -27,14 +26,10 @@ namespace LemonadeStand
         }
 
         //does this
-        public void UpdateWeather()
-        {
-            WeatherType = TodaysWeather.DetermineWeather();
-        }
 
         public void CheckWeather()
         {
-            Console.WriteLine("It is a " + WeatherType + " day today.");
+            Console.WriteLine("It is a " + TodaysWeather.WeatherChoice + " day today.");
         }
 
         public void DetermineVisits()
@@ -58,7 +53,7 @@ namespace LemonadeStand
             {
                 int DemandNum = RNG.Next(DemandValue);
                 customer.CurrentCustomerChanceToBuy = DemandNum;
-                if ( customer.CheckStock(WeatherType, player.PlayerOneInventory.MakeSureEverythingStocked()) == true)
+                if ( customer.CheckStock(TodaysWeather.WeatherChoice, player.PlayerOneInventory.MakeSureEverythingStocked()) == true)
                 {
                     TodaysPurchases++;
                     player.RecountInventory(TodaysRecipe);

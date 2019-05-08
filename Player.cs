@@ -86,6 +86,7 @@ namespace LemonadeStand
         {
             PlayerOneInventory.GrossTotalToday = (purchases * recipe.PricePerGlass);
             PlayerOneInventory.ProfitForDay = (PlayerOneInventory.GrossTotalToday - PlayerOneInventory.MoneySpent);
+            PlayerOneInventory.TotalProfit += (PlayerOneInventory.GrossTotalToday - PlayerOneInventory.MoneySpent);
             PlayerOneInventory.CurrentMoney += (PlayerOneInventory.GrossTotalToday);
         }
 

@@ -11,34 +11,24 @@ namespace LemonadeStand
         //has a 
         public Player PlayerOne;
         public Store Walmart;
-        public UserInterface UI;
+        // public UserInterface UI;
         public List<Day> Days;
-        public Day Monday;
-        public Day Tuesday;
-        public Day Wednesday;
-        public Day Thursday;
-        public Day Friday;
-        public Day Saturday;
-        public Day Sunday;
         public Day CurrentDay;
         public int DayCounter;
         public int DemandValue;
-        public string GoShopping;
+        // public string GoShopping;
 
         //contructor
         public Game()
         {
             PlayerOne = new Player();
             Walmart = new Store();
-            UI = new UserInterface();
-            Monday = new Day();
-            Tuesday = new Day();
-            Wednesday = new Day();
-            Thursday = new Day();
-            Friday = new Day();
-            Saturday = new Day();
-            Sunday = new Day();
-            Days = new List<Day> { Monday, Tuesday, Wednesday, Thursday, Friday };
+            // UI = new UserInterface();
+            Days = new List<Day> { };
+            for (int i = 0; i < 7; i++)
+            {
+                Days.Add(new Day());
+            }
             CurrentDay = Days[DayCounter];
             DayCounter = 0;
 
@@ -47,23 +37,22 @@ namespace LemonadeStand
         //does this
         public void DisplayInstructionsUI()
         {
-            UI.DisplayInstructions();
-            RunGame();
+            UserInterface.DisplayInstructions();
+            CurrentDay.TodaysWeather.DetermineForecast();
         }
         public void RunGame()
-        {           
+        {            
             BeginNewDay();
             PlayerOne.PlayerOneInventory.ResetDailyValues();
-            PlayerOne.PlayerOneInventory.DisplayInventory();            
-            CurrentDay.TodaysWeather.DetermineForecast();
-            CurrentDay.UpdateWeather();
+            PlayerOne.PlayerOneInventory.DisplayInventory();
+            CurrentDay.TodaysWeather.DetermineWeather();
             CurrentDay.CheckWeather();
             PlayerOne.MakeYourRecipe(CurrentDay);
-            GoShopping = PlayerOne.DecideWhatToBuy();
+            string GoShopping = PlayerOne.DecideWhatToBuy();
             if (GoShopping == "yes")
             {
                 PlayerOne.GoToTheStore(Walmart);
-            }            
+            }
             PlayerOne.OpenStandForSales();
             CurrentDay.DetermineVisits();
             CurrentDay.CustomerVisits();
@@ -71,10 +60,12 @@ namespace LemonadeStand
             CurrentDay.GlassesPurchased(PlayerOne, DemandValue);
             PlayerOne.PlayerOneInventory.DisplayInventory();
             Console.ReadLine();
+
             if (DayCounter < 7)
             {
                 RunGame();
-            } else
+            }
+            else
             {
                 Console.WriteLine("Week has ended.");
                 Console.ReadLine();

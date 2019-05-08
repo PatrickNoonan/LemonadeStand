@@ -9,19 +9,20 @@ namespace LemonadeStand
     class Customer
     {
         //has a 
-        public Random RNG;
-        public double SunnyPercent;
-        public double RainyPercent;
-        public double CloudyPercent;
-        public double ColdPercent;
+        //-OpenClosed principle.  Turned these member variables into private variables, to prevent modification, but there could be more variables added allowing for extension
+        private double SunnyPercent;
+        private double RainyPercent;
+        private double CloudyPercent;
+        private double ColdPercent;
         public double CurrentCustomerChanceToBuy;
-        public List<string> WeatherOptions;
+        public Random RNG;
+       // public List<string> WeatherOptions;
 
         //contructor
         public Customer()
         {
             RNG = new Random();
-            WeatherOptions = new List<string> { "Sunny", "Cloudy", "Cold", "Rainy" };
+           // WeatherOptions = new List<string> { "Sunny", "Cloudy", "Cold", "Rainy" };
             SunnyPercent = 80;
             CloudyPercent = 60;
             ColdPercent = 40;

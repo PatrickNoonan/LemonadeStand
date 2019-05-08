@@ -20,6 +20,7 @@ namespace LemonadeStand
             RNG = new Random();
             WeatherOptions = new List<string> { "Sunny", "Rainy", "Cloudy", "Cold" };
             DaysOfWeek = new List<string> { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            DetermineWeather();
         }
 
         //does this
@@ -56,11 +57,10 @@ namespace LemonadeStand
             foreach (string day in DaysOfWeek)
             {
                 DaysWeather = DetermineWeather();
-                Console.WriteLine($"The Forecast for {day} is looking to be {DaysWeather}.");
+                Console.WriteLine($"{day} is looking to be {DaysWeather}.");
             }
             Console.ReadLine();
         }
-
         public string DetermineWeather()
         {
             int index = RNG.Next(WeatherOptions.Count);

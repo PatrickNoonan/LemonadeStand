@@ -14,12 +14,13 @@ namespace LemonadeStand
         public double GrossTotalToday;
         public double MoneySpent;
         public double ProfitForDay;
+        public double TotalProfit;
         public double Lemons;
         public double Ice;
         public double Cups;
         public double Sugar;
         public List<double> InventoryList;
-        
+
         //contructor
         public Inventory()
         {
@@ -30,7 +31,6 @@ namespace LemonadeStand
             Ice = 0;
             Sugar = 0;
             Cups = 0;
-            
         }
 
         //does this
@@ -40,13 +40,14 @@ namespace LemonadeStand
             Console.WriteLine("Current Money: " + CurrentMoney);
             Console.WriteLine("Money spent today: " + MoneySpent);
             Console.WriteLine("Money from sales: " + GrossTotalToday);
-            Console.WriteLine("Profit for today: " + ProfitForDay);            
+            Console.WriteLine("Profit for today: " + ProfitForDay);
+            Console.WriteLine("Total profit so far: " + TotalProfit);
             Console.WriteLine("Lemons in stock: " + Lemons);
             Console.WriteLine("Ice in stock: " + Ice);
             Console.WriteLine("Cups in stock: " + Cups);
             Console.WriteLine("Sugar in stock: " + Sugar);
-            Console.ReadLine();            
-    }
+            Console.ReadLine();
+        }
         public void ResetDailyValues()
         {
             ProfitForDay = 0;
@@ -57,12 +58,12 @@ namespace LemonadeStand
         public bool MakeSureEverythingStocked()
         {
             InventoryList = new List<double> { Lemons, Ice, Cups, Sugar };
-            foreach ( double inventory in InventoryList)
+            foreach (double inventory in InventoryList)
             {
-                if ( inventory <= 0)
+                if (inventory <= 0)
                 {
                     return false;
-                } 
+                }
             }
             return true;
         }
