@@ -10,23 +10,33 @@ namespace LemonadeStand
     {
         //has a 
         //-OpenClosed principle.  Turned these member variables into private variables, to prevent modification, but there could be more variables added allowing for extension
-        private double SunnyPercent;
-        private double RainyPercent;
-        private double CloudyPercent;
-        private double ColdPercent;
-        public double CurrentCustomerChanceToBuy;
         public Random RNG;
-       // public List<string> WeatherOptions;
+        private double clearPercent;
+        private double cloudsPercent;
+        private double mistPercent;
+        private double fogPercent;
+        private double drizzlePercent;
+        private double rainPercent;
+        private double thunderstormsPercent;
+        private double SnowPercent;
+        public double currentCustomerChanceToBuy;        
+        public List<string> weatherOptions;
+        public double noStockCounter;
 
         //contructor
         public Customer()
         {
             RNG = new Random();
-           // WeatherOptions = new List<string> { "Sunny", "Cloudy", "Cold", "Rainy" };
-            SunnyPercent = 80;
-            CloudyPercent = 60;
-            ColdPercent = 40;
-            RainyPercent = 20;
+            weatherOptions = new List<string> { "Clear", "Clouds", "Mist", "Fog", "Drizzle", "Rain", "Thunderstorms", "Snow" };
+            clearPercent = 80;
+            cloudsPercent = 70;
+            mistPercent = 50;
+            fogPercent = 40;
+            drizzlePercent = 30;
+            rainPercent = 20;
+            thunderstormsPercent = 10;
+            SnowPercent = 1;
+            noStockCounter = 0;
         }
 
         //does this
@@ -35,7 +45,7 @@ namespace LemonadeStand
         {
             if (HasStock == false)
             {
-                Console.Write(".");
+                noStockCounter = 1;
                 return false;
             }
             else
@@ -49,26 +59,50 @@ namespace LemonadeStand
 
             switch (CurrentWeather)
             {
-                case "Sunny":
-                    if (CurrentCustomerChanceToBuy <= SunnyPercent)
+                case "Clear":
+                    if (currentCustomerChanceToBuy <= clearPercent)
                     {
                         return true;
                     }
                     break;
-                case "Cloudy":
-                    if (CurrentCustomerChanceToBuy <= CloudyPercent)
+                case "Clouds":
+                    if (currentCustomerChanceToBuy <= cloudsPercent)
                     {
                         return true;
                     }
                     break;
-                case "Cold":
-                    if (CurrentCustomerChanceToBuy <= ColdPercent)
+                case "Mist":
+                    if (currentCustomerChanceToBuy <= mistPercent)
                     {
                         return true;
                     }
                     break;
-                case "Rainy":
-                    if (CurrentCustomerChanceToBuy <= RainyPercent)
+                case "Fog":
+                    if (currentCustomerChanceToBuy <= fogPercent)
+                    {
+                        return true;
+                    }
+                    break;
+                case "Drizzle":
+                    if (currentCustomerChanceToBuy <= drizzlePercent)
+                    {
+                        return true;
+                    }
+                    break;
+                case "Rain":
+                    if (currentCustomerChanceToBuy <= rainPercent)
+                    {
+                        return true;
+                    }
+                    break;
+                case "Thunderstorms":
+                    if (currentCustomerChanceToBuy <= thunderstormsPercent)
+                    {
+                        return true;
+                    }
+                    break;
+                case "Snow":
+                    if (currentCustomerChanceToBuy <= SnowPercent)
                     {
                         return true;
                     }

@@ -9,64 +9,42 @@ namespace LemonadeStand
     class Weather
     {
         //has a 
-        public List<string> WeatherOptions;
-        public string WeatherChoice;
+        WeatherAPI GetWeatherAPI2;
+        public List<string> weatherOptions;
+        public List<string> weatherList;
+        public string weatherChoice;
+        public string tempChoice;
         public Random RNG;
-        public List<string> DaysOfWeek;
+        public List<string> daysOfWeek;
 
         //contructor
         public Weather()
         {
             RNG = new Random();
-            WeatherOptions = new List<string> { "Sunny", "Rainy", "Cloudy", "Cold" };
-            DaysOfWeek = new List<string> { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-            DetermineWeather();
+            weatherOptions = new List<string> { "Clear", "Clouds", "Mist", "Fog", "Drizzle", "Rain", "Thunderstorms", "Snow" };
+            daysOfWeek = new List<string> { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            GetWeatherAPI2 = new WeatherAPI();
         }
 
         //does this
-        public void DetermineForecast()
+        public string DetermineTemp(int day)
         {
-            Console.WriteLine("Would you like to get the forecast for the week or a specific day?(day or week or no)");
-            string ForecastAnswer = Console.ReadLine().ToLower();
-            if (ForecastAnswer == "day")
-            {
-                DetermineSpecificDayForecast();
-            } 
-            else if (ForecastAnswer == "week")
-            {
-                DetermineWeekForecast();
-            }
-            else
-            {
-                Console.WriteLine("Onward");
-            }
+            weatherList = GetWeatherAPI2.WeatherReport(day);
+            tempChoice = weatherList[0];
+            return tempChoice;
         }
-        public void DetermineSpecificDayForecast()
+        public string DetermineWeather(int day)
         {
-            Console.WriteLine("What day did you want the forecast of?(1-7)");
-            int DayToForecast = int.Parse(Console.ReadLine());
-            string DaysWeather = DetermineWeather();
-
-            Console.WriteLine($"The Forecast for {DaysOfWeek[DayToForecast-1]} is {DaysWeather}");
-            Console.ReadLine();
+            weatherList = GetWeatherAPI2.WeatherReport(day);
+            weatherChoice = weatherList[1];
+            return weatherChoice;
         }
+        
         public void DetermineWeekForecast()
         {
-            Console.WriteLine($"The Forecast for the week will be..");
-            string DaysWeather;
-            foreach (string day in DaysOfWeek)
-            {
-                DaysWeather = DetermineWeather();
-                Console.WriteLine($"{day} is looking to be {DaysWeather}.");
-            }
-            Console.ReadLine();
+            GetWeatherAPI2.ForecastReport();
         }
-        public string DetermineWeather()
-        {
-            int index = RNG.Next(WeatherOptions.Count);
-            WeatherChoice = WeatherOptions[index];
-            return WeatherChoice;
-        }
+        
     }
 }
 

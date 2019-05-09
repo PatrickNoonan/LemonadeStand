@@ -8,15 +8,6 @@ namespace LemonadeStand
 {
     static class UserInterface
     {
-        //has a 
-
-        //contructor
-        //public UserInterface()
-        //{
-
-        //}
-
-        //does this
         public static void DisplayInstructions()
         {
             Console.WriteLine("Welcome to the lemonade stand");
@@ -29,9 +20,7 @@ namespace LemonadeStand
             Console.WriteLine("Read the weather report every day! When the temperature drops, or the weather turns bad (overcast, cloudy, rain), don’t expect them to buy nearly as much as they would on a hot, hazy day, so buy accordingly.");
             Console.WriteLine("Feel free to set your prices higher on those hot, muggy days too, as you’ll make more profit, even if you sell a bit less lemonade.");
             Console.WriteLine("At the end of day 7 you'll see how much money you made.");
-            Console.ReadLine();            
+            Console.ReadLine();
         }
-
-        
     }
 }

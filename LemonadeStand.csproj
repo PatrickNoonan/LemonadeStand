@@ -57,10 +57,8 @@
     <Compile Include="Recipe.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="UserInterface.cs" />
-    <Compile Include="UserStories.cs" />
     <Compile Include="Weather.cs" />
     <Compile Include="WeatherAPI.cs" />
-    <Compile Include="WeatherAPI2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

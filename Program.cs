@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Net;
-using System.Web.Script.Serialization;
 
 namespace LemonadeStand
 {
@@ -15,6 +14,7 @@ namespace LemonadeStand
         {
             Game MainGame = new Game();
             MainGame.DisplayInstructionsUI();
+            MainGame.GetWeather();
             MainGame.RunGame();
         }
     }

@@ -9,56 +9,56 @@ namespace LemonadeStand
     class Inventory
     {
         //has a 
-        public double StartingMoney;
-        public double CurrentMoney;
-        public double GrossTotalToday;
-        public double MoneySpent;
-        public double ProfitForDay;
-        public double TotalProfit;
-        public double Lemons;
-        public double Ice;
-        public double Cups;
-        public double Sugar;
-        public List<double> InventoryList;
+        public double startingMoney;
+        public double currentMoney;
+        public double grossTotalToday;
+        public double moneySpent;
+        public double profitForDay;
+        public double totalProfit;
+        public double lemons;
+        public double ice;
+        public double cups;
+        public double sugar;
+        public List<double> inventoryList;
 
         //contructor
         public Inventory()
         {
-            StartingMoney = 200;
-            CurrentMoney = 200;
-            ProfitForDay = 0;
-            Lemons = 0;
-            Ice = 0;
-            Sugar = 0;
-            Cups = 0;
+            startingMoney = 200;
+            currentMoney = 200;
+            profitForDay = 0;
+            lemons = 0;
+            ice = 0;
+            sugar = 0;
+            cups = 0;
         }
 
         //does this
         public void DisplayInventory()
         {
             Console.WriteLine("Your current Inventory consists of");
-            Console.WriteLine("Current Money: " + CurrentMoney);
-            Console.WriteLine("Money spent today: " + MoneySpent);
-            Console.WriteLine("Money from sales: " + GrossTotalToday);
-            Console.WriteLine("Profit for today: " + ProfitForDay);
-            Console.WriteLine("Total profit so far: " + TotalProfit);
-            Console.WriteLine("Lemons in stock: " + Lemons);
-            Console.WriteLine("Ice in stock: " + Ice);
-            Console.WriteLine("Cups in stock: " + Cups);
-            Console.WriteLine("Sugar in stock: " + Sugar);
+            Console.WriteLine("Current Money: " + currentMoney);
+            Console.WriteLine("Money spent today: " + moneySpent);
+            Console.WriteLine("Money from sales: " + grossTotalToday);
+            Console.WriteLine("Profit for today: " + profitForDay);
+            Console.WriteLine("Total profit so far: " + totalProfit);
+            Console.WriteLine("lemons in stock: " + lemons);
+            Console.WriteLine("ice in stock: " + ice);
+            Console.WriteLine("cups in stock: " + cups);
+            Console.WriteLine("sugar in stock: " + sugar);
             Console.ReadLine();
         }
         public void ResetDailyValues()
         {
-            ProfitForDay = 0;
-            MoneySpent = 0;
-            GrossTotalToday = 0;
+            profitForDay = 0;
+            moneySpent = 0;
+            grossTotalToday = 0;
         }
 
         public bool MakeSureEverythingStocked()
         {
-            InventoryList = new List<double> { Lemons, Ice, Cups, Sugar };
-            foreach (double inventory in InventoryList)
+            inventoryList = new List<double> { lemons, ice, cups, sugar };
+            foreach (double inventory in inventoryList)
             {
                 if (inventory <= 0)
                 {

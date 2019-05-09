@@ -3,99 +3,77 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;
-using System.Web.Script.Serialization;
 using Newtonsoft.Json.Linq;
 
-
 namespace LemonadeStand
-{/*
-    class WeatherApi
+{
+    class WeatherAPI
     {
-        public class WeatherInfo
+        //has this
+        public string inputCity;
+        public string countryCode;
+        public string weatherTemp;
+        public double weatherTempDouble;
+        public string weatherDescription;
+        public string foreCastUrl;
+        public string appId;
+        public List<string> weatherInfo;
+
+        //constructor
+        public WeatherAPI()
         {
-                        
-            //public string temperature;
-            //public string weatherDescription;
-            //public City MyCity = new City();
-            //public List MyList = new List();
-            //using json2csharp
-            public class Coord
-            {
-                public double lon { get; set; }
-                public double lat { get; set; }
-            }
-
-            public class City
-            {
-                public int id { get; set; }
-                public string name { get; set; }
-                public Coord coord { get; set; }
-                public string country { get; set; }
-                public int population { get; set; }
-            }
-
-            public class Temp
-            {
-                public double day { get; set; }
-                public double min { get; set; }
-                public double max { get; set; }
-                public double night { get; set; }
-                public double eve { get; set; }
-                public double morn { get; set; }
-            }
-
-            public class Weather
-            {
-                public int id { get; set; }
-                public string main { get; set; }
-                public string description { get; set; }
-                public string icon { get; set; }
-            }
-
-            public class List
-            {
-                public int dt { get; set; }
-                public Temp temp { get; set; }
-                public double pressure { get; set; }
-                public int humidity { get; set; }
-                public List<Weather> weather { get; set; }
-                public double speed { get; set; }
-                public int deg { get; set; }
-                public int clouds { get; set; }
-                public double rain { get; set; }
-            }
-
-            public class RootObject
-            {
-                public City city { get; set; }
-                public string cod { get; set; }
-                public double message { get; set; }
-                public int cnt { get; set; }
-                public List<List> list { get; set; }
-            }
+            weatherInfo = new List<string> { };
+            //my api key 1f6bccd83448bdf3a3b1a818c53bd659
+            appId = "542ffd081e67f4512b705f89d2a611b2";
+            countryCode = "860";
         }
 
-        //protected void GetWeatherInfo(object sender, EventArgs e)
-        public void GetWeatherInfo()
+        //does this        
+        public void ForecastReport()
         {
-            string cityAndCountry;
-            string appId = "542ffd081e67f4512b705f89d2a611b2";
-            //my api key 1f6bccd83448bdf3a3b1a818c53bd659
-            string inputCity = "milwaukee";
-            string url = string.Format("http://api.openweathermap.org/data/2.5/forecast/daily?q={0}&units=metric&cnt=1&APPID={1}", inputCity, appId);
-            using (WebClient client = new WebClient())
+            using (var webClient = new System.Net.WebClient())
             {
-                string json = client.DownloadString(url);
+                Console.WriteLine("What city would you like the forecast for?");
+                inputCity = Console.ReadLine();
+                foreCastUrl = string.Format("http://api.openweathermap.org/data/2.5/forecast?q={0},{1}&units=imperial&cnt=7&APPID={2}", inputCity, countryCode, appId);
+                var myJsonForecast = webClient.DownloadString(foreCastUrl);
+                var forecastJO = JObject.Parse(myJsonForecast);
 
-                WeatherInfo weatherInfo = (new JavaScriptSerializer()).Deserialize<WeatherInfo>(json);                
-                cityAndCountry = weatherInfo.city.name + "," + weatherInfo.city.country;
-                //temperature = string.Format("{0}°С", Math.Round(weatherInfo.list[0].temp.day, 1));
-                //weatherDescription = weatherInfo.list[0].weather[0].description;
+                for (int i = 0; i < 7; i++)
+                {
+                    weatherDescription = forecastJO["list"][i]["weather"][0]["main"].ToString();
+                    weatherTemp = forecastJO["list"][i]["main"]["temp_max"].ToString();
+                    weatherTempDouble = Math.Round(Convert.ToDouble(weatherTemp));
+
+                    Console.WriteLine($"For day {i+1} the temperature will be {weatherTempDouble} and the condition will be {weatherDescription}.");
+                }
+                Console.Read();
+            }
+        }       
+        public List<string> WeatherReport(int dayNum)
+        {
+            using (var webClient = new System.Net.WebClient())
+            {
+               
+                Console.WriteLine("What city are you parked in today?");
+                inputCity = Console.ReadLine();
+                foreCastUrl = string.Format("http://api.openweathermap.org/data/2.5/forecast?q={0},{1}&units=imperial&cnt=7&APPID={2}", inputCity, countryCode, appId);
+                var myJsonForecast = webClient.DownloadString(foreCastUrl);
+                var forecastJO = JObject.Parse(myJsonForecast);
+
+                    weatherDescription = forecastJO["list"][dayNum-1]["weather"][0]["main"].ToString();
+                    weatherTemp = forecastJO["list"][dayNum-1]["main"]["temp_max"].ToString();
+                    weatherTempDouble = Math.Round(Convert.ToDouble(weatherTemp));
+
+                Console.WriteLine($"{inputCity} is {Math.Round(weatherTempDouble)} and the condition is {weatherDescription}. ");
+                Console.Read();
+                weatherInfo.Add(weatherTemp);
+                weatherInfo.Add(weatherDescription);
+
+                return weatherInfo;
                
             }
-            Console.WriteLine(cityAndCountry);
         }
     }
-    */
 }
+

@@ -12,55 +12,57 @@ namespace LemonadeStand
         public Weather TodaysWeather;
         public Random RNG;
         public Recipe TodaysRecipe;
-        public List<Customer> CustomerList;
-        public int TodaysVisits;
-        public int TodaysPurchases;
+        public List<Customer> customerList;
+        public int todaysVisits;
+        public int todaysPurchases;
+        public double noStockNoPurchase;
 
         //contructor
         public Day()
         {
             TodaysWeather = new Weather();
             RNG = new Random();
-            CustomerList = new List<Customer> { };
+            customerList = new List<Customer> { };
             TodaysRecipe = new Recipe();
+            noStockNoPurchase = 0;
         }
 
         //does this
-
-        public void CheckWeather()
-        {
-            Console.WriteLine("It is a " + TodaysWeather.WeatherChoice + " day today.");
-        }
-
         public void DetermineVisits()
         {
-            TodaysVisits = RNG.Next(150, 200);
+            todaysVisits = RNG.Next(150, 200);
         }
 
         public void CustomerVisits()
         {
-            for (int i = 0; i < TodaysVisits; i++)
+            for (int i = 0; i < todaysVisits; i++)
             {
-                CustomerList.Add(new Customer());
+                customerList.Add(new Customer());
             }
 
-            Console.WriteLine("The amount of visitors today was " + TodaysVisits);
+            Console.WriteLine("The amount of visitors today was " + todaysVisits);
         }
         public void GlassesPurchased(Player player, int DemandValue)
         {
-            TodaysPurchases = 0;
-            foreach (Customer customer in CustomerList)
+            todaysPurchases = 0;
+            foreach (Customer customer in customerList)
             {
                 int DemandNum = RNG.Next(DemandValue);
-                customer.CurrentCustomerChanceToBuy = DemandNum;
-                if ( customer.CheckStock(TodaysWeather.WeatherChoice, player.PlayerOneInventory.MakeSureEverythingStocked()) == true)
+                customer.currentCustomerChanceToBuy = DemandNum;
+                if ( customer.CheckStock(TodaysWeather.weatherChoice, player.PlayerOneInventory.MakeSureEverythingStocked()) == true)
                 {
-                    TodaysPurchases++;
+                    todaysPurchases++;
                     player.RecountInventory(TodaysRecipe);
                 }
+                else if ( customer.noStockCounter == 1)
+                {
+                    noStockNoPurchase++;
+                }
             }
-            Console.WriteLine("The amount of purchases today was " + TodaysPurchases);
-            player.RecountMoney(TodaysRecipe, TodaysPurchases);
+            Console.WriteLine("The amount of purchases today was " + todaysPurchases);
+            Console.WriteLine("The amount of customers turned away because you ran out of inventory was " + noStockNoPurchase);
+            noStockNoPurchase = 0;
+            player.RecountMoney(TodaysRecipe, todaysPurchases);
         }
     }
 }
