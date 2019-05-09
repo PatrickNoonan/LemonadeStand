@@ -53,10 +53,8 @@ namespace LemonadeStand
                 return WillPurchase(TodaysWeather);
             }
         }
-
         public bool WillPurchase(string CurrentWeather)
         {
-
             switch (CurrentWeather)
             {
                 case "Clear":
@@ -113,7 +111,6 @@ namespace LemonadeStand
                     }
             }
             return false;
-
         }
     }
 }

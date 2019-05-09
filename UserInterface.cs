@@ -12,14 +12,26 @@ namespace LemonadeStand
         {
             Console.WriteLine("Welcome to the lemonade stand");
             Console.WriteLine("You have 7 days to make as much money as possible");
-            Console.WriteLine("You’ll have complete control over your business, including pricing, inventory control, and purchasing supplies.");
-            Console.WriteLine("The first thing you’ll have to worry about is your recipe. At first, go with the default recipe");
+            Console.WriteLine("Each player will have over where to park your lemonade truck, set pricing, control inventory, and purchase supplies.");
             Console.WriteLine("Buy your ingredients, set your recipe, and start selling!");
-            Console.WriteLine("Make sure you buy enough of all your ingredients, or you won’t be able to sell!");
-            Console.WriteLine("You’ll also have to deal with the weather, which will play a big part when customers are deciding whether or not to buy your lemonade.");
-            Console.WriteLine("Read the weather report every day! When the temperature drops, or the weather turns bad (overcast, cloudy, rain), don’t expect them to buy nearly as much as they would on a hot, hazy day, so buy accordingly.");
+            Console.WriteLine("Make sure you buy enough of all your ingredients, unless the weather is bad, people are thirsty for lemonade out there!");
             Console.WriteLine("Feel free to set your prices higher on those hot, muggy days too, as you’ll make more profit, even if you sell a bit less lemonade.");
-            Console.WriteLine("At the end of day 7 you'll see how much money you made.");
+            Console.WriteLine("If you feel like the city you're in has too poor of weather to sell much lemonade, feel free to drive to any other city in the US!");
+            Console.WriteLine("At the end of day 7 the game is over and whatever player made the most money wins!");
+            Console.ReadLine();
+        }
+        public static void DisplayInventory(Human player)
+        {
+            Console.WriteLine("Your current Inventory consists of");
+            Console.WriteLine("Current Money: " + player.PlayerInventory.currentMoney);
+            Console.WriteLine("Money spent today: " + player.PlayerInventory.moneySpent);
+            Console.WriteLine("Money from sales: " + player.PlayerInventory.grossTotalToday);
+            Console.WriteLine("Profit for today: " + player.PlayerInventory.profitForDay);
+            Console.WriteLine("Total profit so far: " + player.PlayerInventory.totalProfit);
+            Console.WriteLine("lemons in stock: " + player.PlayerInventory.lemons);
+            Console.WriteLine("ice in stock: " + player.PlayerInventory.ice);
+            Console.WriteLine("cups in stock: " + player.PlayerInventory.cups);
+            Console.WriteLine("sugar in stock: " + player.PlayerInventory.sugar);
             Console.ReadLine();
         }
     }

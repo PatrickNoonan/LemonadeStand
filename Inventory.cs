@@ -33,28 +33,13 @@ namespace LemonadeStand
             cups = 0;
         }
 
-        //does this
-        public void DisplayInventory()
-        {
-            Console.WriteLine("Your current Inventory consists of");
-            Console.WriteLine("Current Money: " + currentMoney);
-            Console.WriteLine("Money spent today: " + moneySpent);
-            Console.WriteLine("Money from sales: " + grossTotalToday);
-            Console.WriteLine("Profit for today: " + profitForDay);
-            Console.WriteLine("Total profit so far: " + totalProfit);
-            Console.WriteLine("lemons in stock: " + lemons);
-            Console.WriteLine("ice in stock: " + ice);
-            Console.WriteLine("cups in stock: " + cups);
-            Console.WriteLine("sugar in stock: " + sugar);
-            Console.ReadLine();
-        }
+        //does this       
         public void ResetDailyValues()
         {
             profitForDay = 0;
             moneySpent = 0;
             grossTotalToday = 0;
         }
-
         public bool MakeSureEverythingStocked()
         {
             inventoryList = new List<double> { lemons, ice, cups, sugar };

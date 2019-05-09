@@ -9,14 +9,14 @@ namespace LemonadeStand
     class Player
     {
         //has a 
-        public Inventory PlayerOneInventory;
+        public Inventory PlayerInventory;
 
 
 
         //contructor
         public Player()
         {
-            PlayerOneInventory = new Inventory();
+            PlayerInventory = new Inventory();
         }
 
         //does this
@@ -36,24 +36,24 @@ namespace LemonadeStand
         {
             Console.WriteLine("Welcome to Walmart!");
             List<double> lemonsAndCost = TheStore.BuyLemons();
-            PlayerOneInventory.lemons += lemonsAndCost[0];
-            PlayerOneInventory.currentMoney -= lemonsAndCost[1];
-            PlayerOneInventory.moneySpent += lemonsAndCost[1];
+            PlayerInventory.lemons += lemonsAndCost[0];
+            PlayerInventory.currentMoney -= lemonsAndCost[1];
+            PlayerInventory.moneySpent += lemonsAndCost[1];
 
            List<double> sugarAndCost = TheStore.BuySugar();
-            PlayerOneInventory.sugar += sugarAndCost[0];
-            PlayerOneInventory.currentMoney -= sugarAndCost[1];
-            PlayerOneInventory.moneySpent += sugarAndCost[1];
+            PlayerInventory.sugar += sugarAndCost[0];
+            PlayerInventory.currentMoney -= sugarAndCost[1];
+            PlayerInventory.moneySpent += sugarAndCost[1];
 
            List<double> cupsAndCost = TheStore.BuyGlasses();
-            PlayerOneInventory.cups += cupsAndCost[0];
-            PlayerOneInventory.currentMoney -= cupsAndCost[1];
-            PlayerOneInventory.moneySpent += cupsAndCost[1];
+            PlayerInventory.cups += cupsAndCost[0];
+            PlayerInventory.currentMoney -= cupsAndCost[1];
+            PlayerInventory.moneySpent += cupsAndCost[1];
 
            List<double> iceAndCost = TheStore.BuyIce();
-            PlayerOneInventory.ice += iceAndCost[0];
-            PlayerOneInventory.currentMoney -= iceAndCost[1];
-            PlayerOneInventory.moneySpent += iceAndCost[1];
+            PlayerInventory.ice += iceAndCost[0];
+            PlayerInventory.currentMoney -= iceAndCost[1];
+            PlayerInventory.moneySpent += iceAndCost[1];
         }
         public void MakeYourRecipe(Day Today)
         {
@@ -68,28 +68,24 @@ namespace LemonadeStand
             Console.WriteLine("How expensive will this recipe be to the customer per glass?");
             Today.TodaysRecipe.pricePerGlass = int.Parse(Console.ReadLine());
         }
-
         public void OpenStandForSales()
         {
             Console.WriteLine("The stand is now open.");
             Console.ReadLine();
         }
-
         public void RecountInventory(Recipe recipe)
         {
-            PlayerOneInventory.lemons -= recipe.lemonsPerGlass;
-            PlayerOneInventory.ice -= recipe.icePerGlass;
-            PlayerOneInventory.sugar -= recipe.sugarPerGlass;
-            PlayerOneInventory.cups -= recipe.cups;
+            PlayerInventory.lemons -= recipe.lemonsPerGlass;
+            PlayerInventory.ice -= recipe.icePerGlass;
+            PlayerInventory.sugar -= recipe.sugarPerGlass;
+            PlayerInventory.cups -= recipe.cups;
         }
-
         public void RecountMoney(Recipe recipe, double purchases)
         {
-            PlayerOneInventory.grossTotalToday = (purchases * recipe.pricePerGlass);
-            PlayerOneInventory.profitForDay = (PlayerOneInventory.grossTotalToday - PlayerOneInventory.moneySpent);
-            PlayerOneInventory.totalProfit += (PlayerOneInventory.grossTotalToday - PlayerOneInventory.moneySpent);
-            PlayerOneInventory.currentMoney += (PlayerOneInventory.grossTotalToday);
+            PlayerInventory.grossTotalToday = (purchases * recipe.pricePerGlass);
+            PlayerInventory.profitForDay = (PlayerInventory.grossTotalToday - PlayerInventory.moneySpent);
+            PlayerInventory.totalProfit += (PlayerInventory.grossTotalToday - PlayerInventory.moneySpent);
+            PlayerInventory.currentMoney += (PlayerInventory.grossTotalToday);
         }
-
     }
 }

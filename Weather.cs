@@ -38,13 +38,11 @@ namespace LemonadeStand
             weatherList = GetWeatherAPI2.WeatherReport(day);
             weatherChoice = weatherList[1];
             return weatherChoice;
-        }
-        
+        }        
         public void DetermineWeekForecast()
         {
             GetWeatherAPI2.ForecastReport();
-        }
-        
+        }        
     }
 }
 

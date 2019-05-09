@@ -32,7 +32,6 @@ namespace LemonadeStand
         {
             todaysVisits = RNG.Next(150, 200);
         }
-
         public void CustomerVisits()
         {
             for (int i = 0; i < todaysVisits; i++)
@@ -42,14 +41,14 @@ namespace LemonadeStand
 
             Console.WriteLine("The amount of visitors today was " + todaysVisits);
         }
-        public void GlassesPurchased(Player player, int DemandValue)
+        public void GlassesPurchased(Human player, int DemandValue)
         {
             todaysPurchases = 0;
             foreach (Customer customer in customerList)
             {
                 int DemandNum = RNG.Next(DemandValue);
                 customer.currentCustomerChanceToBuy = DemandNum;
-                if ( customer.CheckStock(TodaysWeather.weatherChoice, player.PlayerOneInventory.MakeSureEverythingStocked()) == true)
+                if ( customer.CheckStock(TodaysWeather.weatherChoice, player.PlayerInventory.MakeSureEverythingStocked()) == true)
                 {
                     todaysPurchases++;
                     player.RecountInventory(TodaysRecipe);

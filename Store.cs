@@ -25,9 +25,7 @@ namespace LemonadeStand
             IcePrice = .25;
             GlassPrice = .25;
         }
-
-        //does this
-       
+        //does this       
         public List<double> BuyLemons()
         {
             Console.WriteLine("How many lemons would you like to buy?");
@@ -35,8 +33,7 @@ namespace LemonadeStand
             PriceOfSale = HowMany * LemonsPrice;
             ProductAndPrice = new List<double> { HowMany, PriceOfSale};
             return ProductAndPrice;
-        }
-        
+        }        
         public List<double> BuySugar()
         {
             Console.WriteLine("How much sugar would you like to buy?");
@@ -45,7 +42,6 @@ namespace LemonadeStand
             ProductAndPrice = new List<double> { HowMany, PriceOfSale };
             return ProductAndPrice;
         }
-
         public List<double> BuyGlasses()
         {
             Console.WriteLine("How many Glasses would you like to buy?");
@@ -54,7 +50,6 @@ namespace LemonadeStand
             ProductAndPrice = new List<double> { HowMany, PriceOfSale };
             return ProductAndPrice;
         }
-
         public List<double> BuyIce()
         {
             Console.WriteLine("How much ice would you like to buy?");
