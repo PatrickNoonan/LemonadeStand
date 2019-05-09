@@ -11,11 +11,13 @@ namespace LemonadeStand
         //has a 
         public Player PlayerOne;
         public Store Walmart;
+        WeatherAPI2 GetWeatherAPI2;
         // public UserInterface UI;
         public List<Day> Days;
         public Day CurrentDay;
         public int DayCounter;
         public int DemandValue;
+        public string txtcity;
         // public string GoShopping;
 
         //contructor
@@ -23,6 +25,7 @@ namespace LemonadeStand
         {
             PlayerOne = new Player();
             Walmart = new Store();
+            GetWeatherAPI2 = new WeatherAPI2();
             // UI = new UserInterface();
             Days = new List<Day> { };
             for (int i = 0; i < 7; i++)
@@ -39,6 +42,11 @@ namespace LemonadeStand
         {
             UserInterface.DisplayInstructions();
             CurrentDay.TodaysWeather.DetermineForecast();
+            GetWeather();
+        }
+        public void GetWeather()
+        {
+            GetWeatherAPI2.WeatherReport();
         }
         public void RunGame()
         {            

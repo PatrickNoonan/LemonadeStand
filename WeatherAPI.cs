@@ -3,234 +3,99 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
+using System.Net;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json.Linq;
 
 
 namespace LemonadeStand
-{
-    class WeatherAPI
+{/*
+    class WeatherApi
     {
-        public static Conditions GetCurrentConditions(string location)
+        public class WeatherInfo
         {
-            /// <summary>            
-            /// The function that returns the current conditions for the specified location.
-            /// </summary>
-            /// <param name="location">City or ZIP code</param>
-            /// <returns></returns>
-
-            Conditions conditions = new Conditions();
-
-            XmlDocument xmlConditions = new XmlDocument();
-
-            xmlConditions.Load(string.Format("http://www.google.com/ig/api?weather={0}", location));
-
-            if (xmlConditions.SelectSingleNode("xml_api_reply/weather/problem_cause") != null)
+                        
+            //public string temperature;
+            //public string weatherDescription;
+            //public City MyCity = new City();
+            //public List MyList = new List();
+            //using json2csharp
+            public class Coord
             {
-                conditions = null;
-            }
-            else
-            {
-                conditions.City = xmlConditions.SelectSingleNode("/xml_api_reply/weather/forecast_information/city").Attributes["data"].InnerText;
-                conditions.Condition = xmlConditions.SelectSingleNode("/xml_api_reply/weather/current_conditions/condition").Attributes["data"].InnerText;
-                conditions.TempC = xmlConditions.SelectSingleNode("/xml_api_reply/weather/current_conditions/temp_c").Attributes["data"].InnerText;
-                conditions.TempF = xmlConditions.SelectSingleNode("/xml_api_reply/weather/current_conditions/temp_f").Attributes["data"].InnerText;
-                conditions.Humidity = xmlConditions.SelectSingleNode("/xml_api_reply/weather/current_conditions/humidity").Attributes["data"].InnerText;
-                conditions.Wind = xmlConditions.SelectSingleNode("/xml_api_reply/weather/current_conditions/wind_condition").Attributes["data"].InnerText;
-            }
-            return conditions;
-        }
-        /// <summary>
-
-        /// The function that gets the forecast for the next four days.
-
-        /// </summary>
-
-        /// <param name="location">City or ZIP code</param>
-
-        /// <returns></returns>
-
-        public static List<Conditions> GetForecast(string location)
-
-        {
-
-            List<Conditions> conditions = new List<Conditions>();
-
- 
-
-            XmlDocument xmlConditions = new XmlDocument();
-
-            xmlConditions.Load(string.Format("http://www.google.com/ig/api?weather={0}", location));
-
- 
-
-            if (xmlConditions.SelectSingleNode("xml_api_reply/weather/problem_cause") != null)
-
-            {
-
-                conditions = null;
-
+                public double lon { get; set; }
+                public double lat { get; set; }
             }
 
-            else
-
+            public class City
             {
+                public int id { get; set; }
+                public string name { get; set; }
+                public Coord coord { get; set; }
+                public string country { get; set; }
+                public int population { get; set; }
+            }
 
-                foreach (XmlNode node in xmlConditions.SelectNodes("/xml_api_reply/weather/forecast_conditions"))
+            public class Temp
+            {
+                public double day { get; set; }
+                public double min { get; set; }
+                public double max { get; set; }
+                public double night { get; set; }
+                public double eve { get; set; }
+                public double morn { get; set; }
+            }
 
-                {
+            public class Weather
+            {
+                public int id { get; set; }
+                public string main { get; set; }
+                public string description { get; set; }
+                public string icon { get; set; }
+            }
 
-                    Conditions condition = new Conditions();
+            public class List
+            {
+                public int dt { get; set; }
+                public Temp temp { get; set; }
+                public double pressure { get; set; }
+                public int humidity { get; set; }
+                public List<Weather> weather { get; set; }
+                public double speed { get; set; }
+                public int deg { get; set; }
+                public int clouds { get; set; }
+                public double rain { get; set; }
+            }
 
-                    condition.City = xmlConditions.SelectSingleNode("/xml_api_reply/weather/forecast_information/city").Attributes["data"].InnerText;
-
-                    condition.Condition = node.SelectSingleNode("condition").Attributes["data"].InnerText;
-
-                    condition.High = node.SelectSingleNode("high").Attributes["data"].InnerText;
-
-                    condition.Low = node.SelectSingleNode("low").Attributes["data"].InnerText;
-
-                    condition.DayOfWeek = node.SelectSingleNode("day_of_week").Attributes["data"].InnerText;
-
-                    conditions.Add(condition);
-
-                }
-
-            } 
-
-            return conditions;
-
+            public class RootObject
+            {
+                public City city { get; set; }
+                public string cod { get; set; }
+                public double message { get; set; }
+                public int cnt { get; set; }
+                public List<List> list { get; set; }
+            }
         }
 
+        //protected void GetWeatherInfo(object sender, EventArgs e)
+        public void GetWeatherInfo()
+        {
+            string cityAndCountry;
+            string appId = "542ffd081e67f4512b705f89d2a611b2";
+            //my api key 1f6bccd83448bdf3a3b1a818c53bd659
+            string inputCity = "milwaukee";
+            string url = string.Format("http://api.openweathermap.org/data/2.5/forecast/daily?q={0}&units=metric&cnt=1&APPID={1}", inputCity, appId);
+            using (WebClient client = new WebClient())
+            {
+                string json = client.DownloadString(url);
+
+                WeatherInfo weatherInfo = (new JavaScriptSerializer()).Deserialize<WeatherInfo>(json);                
+                cityAndCountry = weatherInfo.city.name + "," + weatherInfo.city.country;
+                //temperature = string.Format("{0}°С", Math.Round(weatherInfo.list[0].temp.day, 1));
+                //weatherDescription = weatherInfo.list[0].weather[0].description;
+               
+            }
+            Console.WriteLine(cityAndCountry);
+        }
     }
-    public class Conditions
-    {
-
-        string city = "No Data";
-
-        string dayOfWeek = DateTime.Now.DayOfWeek.ToString();
-
-        string condition = "No Data";
-
-        string tempF = "No Data";
-
-        string tempC = "No Data";
-
-        string humidity = "No Data";
-
-        string wind = "No Data";
-
-        string high = "No Data";
-
-        string low = "No Data";
-
-
-
-        public string City
-
-        {
-
-            get { return city; }
-
-            set { city = value; }
-
-        }
-
-
-
-        public string Condition
-
-        {
-
-            get { return condition; }
-
-            set { condition = value; }
-
-        }
-
-
-
-        public string TempF
-
-        {
-
-            get { return tempF; }
-
-            set { tempF = value; }
-
-        }
-
-
-
-        public string TempC
-
-        {
-
-            get { return tempC; }
-
-            set { tempC = value; }
-
-        }
-
-
-
-        public string Humidity
-
-        {
-
-            get { return humidity; }
-
-            set { humidity = value; }
-
-        }
-
-
-
-        public string Wind
-
-        {
-
-            get { return wind; }
-
-            set { wind = value; }
-
-        }
-
-
-
-        public string DayOfWeek
-
-        {
-
-            get { return dayOfWeek; }
-
-            set { dayOfWeek = value; }
-
-        }
-
-
-
-        public string High
-
-        {
-
-            get { return high; }
-
-            set { high = value; }
-
-        }
-
-
-
-        public string Low
-
-        {
-
-            get { return low; }
-
-            set { low = value; }
-
-        }
-
-    }
-
+    */
 }
