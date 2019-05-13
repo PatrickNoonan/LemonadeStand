@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Player
+    public class Player
     {
         //has a 
         public Inventory PlayerInventory;
@@ -27,7 +27,8 @@ namespace LemonadeStand
             if (Answer == "yes")
             {
                 return "yes";
-            } else
+            }
+            else
             {
                 return "no";
             }
@@ -40,17 +41,17 @@ namespace LemonadeStand
             PlayerInventory.currentMoney -= lemonsAndCost[1];
             PlayerInventory.moneySpent += lemonsAndCost[1];
 
-           List<double> sugarAndCost = TheStore.BuySugar();
+            List<double> sugarAndCost = TheStore.BuySugar();
             PlayerInventory.sugar += sugarAndCost[0];
             PlayerInventory.currentMoney -= sugarAndCost[1];
             PlayerInventory.moneySpent += sugarAndCost[1];
 
-           List<double> cupsAndCost = TheStore.BuyGlasses();
+            List<double> cupsAndCost = TheStore.BuyGlasses();
             PlayerInventory.cups += cupsAndCost[0];
             PlayerInventory.currentMoney -= cupsAndCost[1];
             PlayerInventory.moneySpent += cupsAndCost[1];
 
-           List<double> iceAndCost = TheStore.BuyIce();
+            List<double> iceAndCost = TheStore.BuyIce();
             PlayerInventory.ice += iceAndCost[0];
             PlayerInventory.currentMoney -= iceAndCost[1];
             PlayerInventory.moneySpent += iceAndCost[1];
@@ -61,7 +62,7 @@ namespace LemonadeStand
             Console.WriteLine("lemons per glass?");
             Console.ReadLine();
             Today.TodaysRecipe.lemonsPerGlass = int.Parse(Console.ReadLine());
-            Console.WriteLine("cups of sugar per glass?");
+            Console.WriteLine("packs of sugar per glass?");
             Today.TodaysRecipe.sugarPerGlass = int.Parse(Console.ReadLine());
             Console.WriteLine("Cubes of ice per glass?");
             Today.TodaysRecipe.icePerGlass = int.Parse(Console.ReadLine());

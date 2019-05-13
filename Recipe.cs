@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Recipe
+    public class Recipe
     {
         //has these
         public double lemonsPerGlass;
         public double sugarPerGlass;
         public double icePerGlass;
-        public double cups;        
+        public double cups;
         public double productionCostPer;
         public int customerChanceOfBuying;
         public int pricePerGlass;
 
         //constructor
+
         public Recipe()
         {
             lemonsPerGlass = 4;
@@ -25,22 +26,14 @@ namespace LemonadeStand
             icePerGlass = 4;
             cups = 1;
             pricePerGlass = 1;
-            customerChanceOfBuying = 100;
-        }
-
-        public double CalculateProductionCost(double Purchases)
-        {
-            productionCostPer = (lemonsPerGlass * .25) + (sugarPerGlass * .25) + (icePerGlass * .25) + .25;
-            return productionCostPer * Purchases;
-        }
-
-        public int PriceBasedDemand()
-        {
-            int decreaseChance = pricePerGlass * 2;
-            return customerChanceOfBuying + decreaseChance;
+            customerChanceOfBuying = 150;
         }
 
         //does this
-
-    }    
+        public int PriceBasedDemand()
+        {
+            int decreaseChance = pricePerGlass * 4;
+            return customerChanceOfBuying + decreaseChance;
+        }
+    }
 }

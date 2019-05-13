@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Human : Player
+    public class Human : Player
     {
         //Does have
 

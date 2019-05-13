@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Day
+    public class Day
     {
         //has a 
         public Weather TodaysWeather;
@@ -30,7 +30,7 @@ namespace LemonadeStand
         //does this
         public void DetermineVisits()
         {
-            todaysVisits = RNG.Next(150, 200);
+            todaysVisits = RNG.Next(50, 100);
         }
         public void CustomerVisits()
         {
@@ -48,12 +48,12 @@ namespace LemonadeStand
             {
                 int DemandNum = RNG.Next(DemandValue);
                 customer.currentCustomerChanceToBuy = DemandNum;
-                if ( customer.CheckStock(TodaysWeather.weatherChoice, player.PlayerInventory.MakeSureEverythingStocked()) == true)
+                if (customer.CheckStock(TodaysWeather.weatherChoice, player.PlayerInventory.MakeSureEverythingStocked()) == true)
                 {
                     todaysPurchases++;
                     player.RecountInventory(TodaysRecipe);
                 }
-                else if ( customer.noStockCounter == 1)
+                else if (customer.noStockCounter == 1)
                 {
                     noStockNoPurchase++;
                 }

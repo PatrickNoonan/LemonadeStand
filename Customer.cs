@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Customer
+    public class Customer
     {
         //has a 
         //-OpenClosed principle.  Turned these member variables into private variables, to prevent modification, but there could be more variables added allowing for extension
@@ -19,7 +19,7 @@ namespace LemonadeStand
         private double rainPercent;
         private double thunderstormsPercent;
         private double SnowPercent;
-        public double currentCustomerChanceToBuy;        
+        public double currentCustomerChanceToBuy;
         public List<string> weatherOptions;
         public double noStockCounter;
 
@@ -28,9 +28,9 @@ namespace LemonadeStand
         {
             RNG = new Random();
             weatherOptions = new List<string> { "Clear", "Clouds", "Mist", "Fog", "Drizzle", "Rain", "Thunderstorms", "Snow" };
-            clearPercent = 80;
-            cloudsPercent = 70;
-            mistPercent = 50;
+            clearPercent = 60;
+            cloudsPercent = 50;
+            mistPercent = 45;
             fogPercent = 40;
             drizzlePercent = 30;
             rainPercent = 20;

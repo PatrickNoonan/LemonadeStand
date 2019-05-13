@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Game
+    public class Game
     {
         //has a 
         public Human PlayerOne;
@@ -60,8 +60,11 @@ namespace LemonadeStand
             {
                 Console.WriteLine($"Player One, welcome to day #{dayCounter}");
                 RunGame(PlayerOne);
-                Console.WriteLine($"Player Two, welcome to day #{dayCounter}");
-                RunGame(PlayerTwo);                
+                if (PlayerTwo != null)
+                {
+                    Console.WriteLine($"Player Two, welcome to day #{dayCounter}");
+                    RunGame(PlayerTwo);
+                }
             }
             else
             {

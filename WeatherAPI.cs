@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace LemonadeStand
 {
-    class WeatherAPI
+    public class WeatherAPI
     {
         //has this
         public string inputCity;
@@ -45,25 +45,25 @@ namespace LemonadeStand
                     weatherTemp = forecastJO["list"][i]["main"]["temp_max"].ToString();
                     weatherTempDouble = Math.Round(Convert.ToDouble(weatherTemp));
 
-                    Console.WriteLine($"For day {i+1} the temperature will be {weatherTempDouble} and the condition will be {weatherDescription}.");
+                    Console.WriteLine($"For day {i + 1} the temperature will be {weatherTempDouble} and the condition will be {weatherDescription}.");
                 }
                 Console.Read();
             }
-        }       
+        }
         public List<string> WeatherReport(int dayNum)
         {
             using (var webClient = new System.Net.WebClient())
             {
-               
+
                 Console.WriteLine("What city are you parked in today?");
                 inputCity = Console.ReadLine();
                 foreCastUrl = string.Format("http://api.openweathermap.org/data/2.5/forecast?q={0},{1}&units=imperial&cnt=7&APPID={2}", inputCity, countryCode, appId);
                 var myJsonForecast = webClient.DownloadString(foreCastUrl);
                 var forecastJO = JObject.Parse(myJsonForecast);
 
-                    weatherDescription = forecastJO["list"][dayNum-1]["weather"][0]["main"].ToString();
-                    weatherTemp = forecastJO["list"][dayNum-1]["main"]["temp_max"].ToString();
-                    weatherTempDouble = Math.Round(Convert.ToDouble(weatherTemp));
+                weatherDescription = forecastJO["list"][dayNum - 1]["weather"][0]["main"].ToString();
+                weatherTemp = forecastJO["list"][dayNum - 1]["main"]["temp_max"].ToString();
+                weatherTempDouble = Math.Round(Convert.ToDouble(weatherTemp));
 
                 Console.WriteLine($"{inputCity} is {Math.Round(weatherTempDouble)} and the condition is {weatherDescription}. ");
                 Console.Read();
@@ -71,7 +71,6 @@ namespace LemonadeStand
                 weatherInfo.Add(weatherDescription);
 
                 return weatherInfo;
-               
             }
         }
     }

@@ -1,4 +1,4 @@
-# LemonadeStand
+﻿# LemonadeStand
 
 As a developer, if I don’t know what Lemonade Stand game is, I will play the game online for a bit to get familiar with the gameplay.
 ---(5 points): As a developer, I want to make good, consistent commits.
@@ -24,8 +24,8 @@ As a developer, if I don’t know what Lemonade Stand game is, I will play the g
  ----and discuss my reasoning, so that I can properly understand good code design. Minimum of two SOLID design principlesmust be ---used. 
 
         Bonus Points:
-        (5 points): As a player, I want the game to be playable for more than one player, so that I can have 
-        multiple humans play each other or a human play a computer.
+---(5 points): As a player, I want the game to be playable for more than one player, so that I can have 
+----multiple humans play each other or a human play a computer.
 ---(5 points) As a developer, I want to integrate a Weather API, so that my game has real-time weather based on a current 
 ----temperature and forecast.
 
@@ -55,6 +55,7 @@ As a developer, if I don’t know what Lemonade Stand game is, I will play the g
         One should "depend upon abstractions, [not] concretions."[4]
         ---------------------------------------------------------------
         --try to use each one of these--
+	Take out any random() from member variables (customer class)
         Static class UI
         Abstraction
         Encapsulation
